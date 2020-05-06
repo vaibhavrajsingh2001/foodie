@@ -6,7 +6,8 @@ export const elems = {
     outputDiv: document.querySelector('.results'),
     recipeArea: document.querySelector('.recipe'),
     cartArea: document.querySelector('.shopping__list'),
-    likesMenu: document.querySelector('.likes_field')
+    likesMenu: document.querySelector('.likes__field'),
+    likesList: document.querySelector('.likes__list')
 }
 
 export const addLoader = parent => {

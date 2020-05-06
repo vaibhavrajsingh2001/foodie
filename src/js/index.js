@@ -106,7 +106,8 @@ const showCart = () => {
         listView.createItem(item);
     })
 };
-
+state.likes = new Likes();
+//controller for likes
 const showLikes = () => {
     if(!state.likes) {
         state.likes = new Likes();
@@ -116,10 +117,13 @@ const showLikes = () => {
     if(!state.likes.isLiked(id)) {
         const newLike = state.likes.addLike(id, state.recipeData.title, state.recipeData.image);
         likesView.toggleLike(true);
+        likesView.likesPutter(newLike);
     } else {
         state.likes.removeLike(id);
         likesView.toggleLike(false);
+        likesView.likeClearer(id);
     }
+    likesView.likeMenu(state.likes.totalLikes);
 }
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, showRecipe));
