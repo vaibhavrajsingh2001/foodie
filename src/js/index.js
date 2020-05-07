@@ -74,7 +74,7 @@ elems.cartArea.addEventListener('click', e => {
         const amount = parseFloat(e.target.value, 10);
         state.cart.updateAmount(id, amount);
     }
-})
+});
 
 //controller for loading recipe
 const showRecipe = async () => {
@@ -106,7 +106,7 @@ const showCart = () => {
         listView.createItem(item);
     })
 };
-state.likes = new Likes();
+
 //controller for likes
 const showLikes = () => {
     if(!state.likes) {
@@ -128,4 +128,10 @@ const showLikes = () => {
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, showRecipe));
 
-window.state = state;
+// to get liked itmes from localstorage on each refresh
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+    state.likes.readPersistedData();
+    likesView.likeMenu(state.likes.totalLikes);
+    state.likes.likes.forEach(el => likesView.likesPutter(el));
+});
